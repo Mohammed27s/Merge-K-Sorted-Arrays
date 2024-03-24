@@ -1,0 +1,71 @@
+
+//Merge K Sorted Arrays
+
+import java.lang.reflect.Array;
+import java.util.*;
+
+public class MergeKSortedArrays {
+
+    public static void main(String[] args){
+
+
+        //The input array contains three sorted arrays
+
+        Integer[] sortedArray1 = new Integer[]{1,4,5};
+        Integer[] sortedArray2 = new Integer[]{1,3,4};
+        Integer[] sortedArray3 = new Integer[]{2,6};
+
+        Integer[][] allSortedArrays = new Integer[][]{sortedArray1, sortedArray2, sortedArray3};
+
+
+        //This for loop is showing all the three sub sorted arrays in main array named: (allSortedArrays)
+        for(Integer[] sort : allSortedArrays) {
+
+            System.out.println("The main array with three sorted arrays " +Arrays.toString(sort));
+        }
+
+        System.out.println("=================================================================================="+"\n");
+
+
+        //This Stack will contain all sorted arrays and merge them like this [1,1,2,3,4,4,5,6]
+        Stack<Integer> mergeKSortedArrays = new Stack<>();
+        Integer stackSize = 8;
+
+        //moving throw the main array
+        for(Integer i = 0; i <= allSortedArrays.length - 1; i++){
+
+            if(i <= allSortedArrays.length -1){
+
+                //moving throw the sub array
+                for(Integer j = 0; j <= allSortedArrays[i].length - 1; j++){
+
+                    if(mergeKSortedArrays.size() <= stackSize){
+
+                        Integer indexValue = allSortedArrays[j][i];
+
+                        mergeKSortedArrays.add(indexValue);
+                    }
+                    else {
+
+                        System.out.println("The stack is full");
+                    }
+
+                }
+
+            }
+
+        }
+
+
+            //The merged all arrays and sorted and using new array to sort all elements inside it 
+
+        Integer[] mergedArray = new Integer[mergeKSortedArrays.size()];
+        mergeKSortedArrays.toArray(mergedArray);
+        Arrays.sort(mergedArray);
+
+        System.out.println("The merge k sorted array: " + Arrays.toString(mergedArray));
+
+
+
+    }
+}
